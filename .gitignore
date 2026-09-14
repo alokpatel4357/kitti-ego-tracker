@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+venv/
+env/
+
+# Project Data & Outputs
+data/raw_frames/
+data/processed/
+output/
+*.mp4
+*.zip
+
+# OS Files
+.DS_Store
