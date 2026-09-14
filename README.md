@@ -21,14 +21,17 @@ This project solves this challenge purely through classical multi-view geometry 
 The tracker processes pairs of consecutive image frames ($I_{t-1}, I_t$) through a six-stage mathematical pipeline:
 
 ```mermaid
-flowchart LR
-    A[Frame Pair<br/>I<sub>t-1</sub>, I<sub>t</sub>] --> B[Farneback<br/>Dense Optical Flow]
-    B --> C[Epipolar RANSAC<br/>Outlier Rejection]
-    C --> D[PCA Subspace<br/>Ego-Motion Modeling]
-    D --> E[Residual Vector<br/>Subtraction]
-    E --> F[Morphological<br/>Noise Cleaning]
-    F --> G[Spatial K-Means<br/>Clustering]
-    G --> H[Dynamic Obstacle<br/>Bounding Boxes]
+flowchart TD
+    A["Raw Frame Pair (It-1, It)"] --> B["Farneback Dense Optical Flow Field"]
+    B --> C["Epipolar RANSAC Outlier Rejection"]
+    C --> D["PCA Subspace Ego-Motion Modeling"]
+    D --> E["Residual Motion Vector Subtraction"]
+    E --> F["Morphological Noise Cleaning (Opening & Closing)"]
+    F --> G["Spatial K-Means Obstacle Clustering"]
+    G --> H["Dynamic Obstacle Bounding Boxes & Telemetry"]
+
+    classDef stage fill:#1e293b,stroke:#3b82f6,stroke-width:2px,color:#f8fafc,font-size:14px,font-weight:bold;
+    class A,B,C,D,E,F,G,H stage;
 ```
 
 ### Step 1: Dense Optical Flow Ingestion
